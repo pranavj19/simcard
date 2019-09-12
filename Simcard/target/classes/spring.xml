@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here --
+
+
+<bean id="airtel" class="com.sakha.Simcard.Airtel" scope="singleton" lazy-init="true" >
+<constructor-arg name="smsCharge" value="1.7"/>
+<constructor-arg name="callCharge" value="1"/>
+<constructor-arg name="internetCharge" value="8"/>
+
+<constructor-arg name="mg" ref="messagesender"/>
+
+
+
+
+
+
+
+<property name="callCharge" value="1"/>
+<property name="internetCharge" value="10"/> 
+<property name="mg" ref="messagesender"/> 
+<property name="list" > 
+<list>
+<value>2g</value>
+<value>3g</value>
+<value>volte</value>
+</list>
+</property>
+
+
+</bean>
+<bean id="idea" class="com.sakha.Simcard.Idea" scope="singleton" lazy-init="true">
+<property name="smsCharge" value="2."/>
+<property name="callCharge" value="1.2"/>
+<property name="internetCharge" value="9"/>
+<property name="mg1" ref="messagesender"/>
+
+<property name="list1" > 
+<list>
+<value>2g1</value>
+<value>3g1</value>
+<value>volte 4g</value>
+</list>
+</property>
+
+</bean>
+<bean id="mobile" class="com.sakha.Simcard.Mobile" >
+<constructor-arg name="sim" ref="airtel"/>
+
+<property name="sim" ref="airtel"/>
+</bean>
+<bean id="messagesender" class="com.sakha.Simcard.MessageSender" scope="singleton" lazy-init="true">
+<property name="smsCharge" value="1.5"/>
+<property name="mmscharge" value="1.7"/>
+</bean>
+
+
+</beans>
